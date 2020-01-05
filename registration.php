@@ -60,13 +60,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $is_valid = false;
     }
 
-    if ($is_valid == true)
+    $email_query = "SELECT email FROM users WHERE email='$email'";
+    $phone_query = "SELECT phone FROM users WHERE phone='$phone'";
+    $cnic_query = "SELECT cnic FROM users WHERE cnic='$cnic'";
+    $email_result = mysqli_query($con, $email_query);
+    $phone_result = mysqli_query($con, $phone_query);
+    $cnic_result = mysqli_query($con, $cnic_query);
+    if ($email_result->num_rows > 0)
     {
-        $email_query = "Select * from users where email='$email'";
-        $result = mysqli_query($con, $email_query);
-        if ($result->num_rows == 0)
+        $is_valid = false;
+        $email_error = "Email Already Exists!";
+    }
+    if ($phone_result->num_rows > 0)
+    {
+        $is_valid = false;
+        $phone_error = "Phone Number Already Exists!";
+    }
+    if ($cnic_result->num_rows > 0)
+    {
+        $is_valid = false;
+        $cnic_error = "CNIC Already Exists";
+    }
+    {
+        if ($is_valid == true)
         {
-
             $insert_query = "Insert into users(`first_name`,`last_name`,`email`,`password`,`phone`,`cnic`,`address`,`role_id`) VALUES ('$first_name','$last_name','$email','$pass','$phone','$cnic','$address','$role')";
             $insert_result = mysqli_query($con, $insert_query);
             if ($insert_result == 1)
@@ -78,11 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 $error_message = "Unable to add User";
             }
         }
-        else
-        {
-            $error_message = "Email already exists";
-        }
     }
+
 }
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -115,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     </div>
 
     <div class="form-group">
-        <input type="number" onKeyPress="if(this.value.length==10) return false;" value="<?php echo isset($phone) ? $phone : '' ?>" name="phone" class="form-control" placeholder="Your Phone *">
+        <input type="number" onKeyPress="if(this.value.length==11) return false;" value="<?php echo isset($phone) ? $phone : '' ?>" name="phone" class="form-control" placeholder="Your Phone *">
         <p style="color: red;"><?php echo isset($phone_error) ? $phone_error : '' ?></p>
 
     </div>
