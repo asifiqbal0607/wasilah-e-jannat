@@ -1,5 +1,11 @@
 
+
+<?php include_once '../task_manager/shared/header.php';?>
+<?php include_once '../task_manager/shared/footer.php';?>
 <?php include_once '../task_manager/helper/path_helper.php';?>
+<?php include_once '../task_manager/helper/db_helper.php';?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,11 +22,11 @@
      <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-
-
 </head>
 
-<?php include_once '../task_manager/shared/header.php';?>
 
-<?php include_once '../task_manager/shared/footer.php';?>
+<?php
+
+?>
+
+

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <?php include_once '../task_manager/helper/path_helper.php';?>
 <?php include_once '../task_manager/helper/db_helper.php';?>
 
@@ -22,6 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
         if ($result_login == 1)
         {
+
+            $user_result = mysqli_fetch_assoc($result);
+            $f_name = $user_result['first_name'];
+            $l_name = $user_result['last_name'];
+            $_SESSION['first_name'] = $f_name;
+            $_SESSION['last_name'] = $l_name;
             header('location:home.php');
         }
         else
