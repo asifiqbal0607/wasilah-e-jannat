@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $cnic = $_POST['cnic'];
     $address = $_POST['address'];
     $role = $_POST['role_id'];
-    $is_valid = true;
+    $is_valid;
     if ($first_name == "")
     {
         $firstname_error = "Please Enter the First Name";

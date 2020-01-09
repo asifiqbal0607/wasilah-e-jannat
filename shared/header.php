@@ -68,7 +68,7 @@ $last_result = $last_name[0];
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">User Management</h6> -->
-            <a class="collapse-item" href="registration.php">Create User</a>
+            <a class="collapse-item active" href="registration.php">Create User</a>
             <a class="collapse-item" href="users.php">Users</a>
           </div>
         </div>

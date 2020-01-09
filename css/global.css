@@ -11336,3 +11336,8 @@ body.sidebar-toggled footer.sticky-footer {
 .reg-btn{
     margin-top: 15px;
   }
+.edit-btn{
+background: none;
+    border: none;
+    outline: none;
+}
