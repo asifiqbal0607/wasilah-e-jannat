@@ -2,7 +2,7 @@
 <?php include_once '../task_manager/shared/header.php';?>
 <?php include_once '../task_manager/helper/db_helper.php';?>
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_SERVER['REQUEST_METHOD'])))
 {
     $error_message = "";
     $first_name = $_POST['first_name'];
@@ -84,7 +84,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         if ($is_valid == true)
         {
-            $insert_query = "Insert into users(`first_name`,`last_name`,`email`,`password`,`phone`,`cnic`,`address`,`role_id`) VALUES ('$first_name','$last_name','$email','$pass','$phone','$cnic','$address','$role')";
+            $insert_query = "Insert into users(`first_name`,`last_name`,`email`,`password`,`phone`,`cnic`,
+            `address`,`role_id`) VALUES
+            ('$first_name','$last_name','$email','$pass','$phone','$cnic','$address','$role')";
             $insert_result = mysqli_query($con, $insert_query);
             if ($insert_result == 1)
             {
