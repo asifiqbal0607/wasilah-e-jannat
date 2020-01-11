@@ -1,10 +1,12 @@
 <?php
 session_start();
-$first_name = $_SESSION['first_name'];
-$last_name = $_SESSION['last_name'];
+$header_first_name = $_SESSION['first_name'];
+
+$header_last_name = $_SESSION['last_name'];
+
 //echo $first_name . ' ' . $last_name;
-$name_result = $first_name[0];
-$last_result = $last_name[0];
+$name_result = $header_first_name[0];
+$last_result = $header_last_name[0];
 //echo $name_result . '' . $last_result;
 ?>
 
