@@ -1,14 +1,16 @@
+
 <?php
 session_start();
-$first_name = $_SESSION['first_name'];
-$last_name = $_SESSION['last_name'];
+$header_first_name = $_SESSION['first_name'];
+
+$header_last_name = $_SESSION['last_name'];
+
 //echo $first_name . ' ' . $last_name;
-$name_result = $first_name[0];
-$last_result = $last_name[0];
+$name_result = $header_first_name[0];
+$last_result = $header_last_name[0];
 //echo $name_result . '' . $last_result;
 ?>
-
-<?php include_once '../task_manager/helper/path_helper.php';?>
+<?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +70,7 @@ $last_result = $last_name[0];
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">User Management</h6> -->
-            <a class="collapse-item active" href="registration.php">Create User</a>
+            <a class="collapse-item" href="registration.php">Create User</a>
             <a class="collapse-item" href="users.php">Users</a>
           </div>
         </div>

@@ -1,32 +1,31 @@
 <?php
 session_start();
 ?>
-<?php include_once '../task_manager/helper/path_helper.php';?>
-<?php include_once '../task_manager/helper/db_helper.php';?>
+<?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
+<?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
 
 <?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
+if (isset($_POST['btn_login']))
 {
+
     $email = $_POST['email'];
     $pass = $_POST['password'];
     $login_error = "";
 
     if ($email == "" && $pass == "")
     {
-        $login_error = "Please Enter Email and Password";
+        $login_error = "Please Enter Email & Password";
     }
     else
     {
-        $query = "SELECT * FROM users where email = '$email' AND password = '$pass'";
+        $login_query = "SELECT * FROM fund_raiser where email = '$email' AND password = '$pass'";
 
-        $result = mysqli_query($con, $query);
-        $result_login = mysqli_num_rows($result);
+        $result_login = mysqli_query($con, $login_query);
+        $result = mysqli_num_rows($result_login);
 
-        if ($result_login == 1)
+        if ($result == 1)
         {
-
-            $user_result = mysqli_fetch_assoc($result);
+            $user_result = mysqli_fetch_assoc($result_login);
             $f_name = $user_result['first_name'];
             $l_name = $user_result['last_name'];
             $_SESSION['first_name'] = $f_name;
@@ -35,10 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         }
         else
         {
-            $login_error = "Your are not Registered!";
+            $login_error = "You are not Registered!";
         }
 
     }
+
 }
 ?>
 
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h2 class="register-heading">Task For Employee</h2>
+                                <h2 class="register-heading">Login</h2>
                                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                                 <div class="row register-form">
                                     <div class="col-md-8">
@@ -85,7 +85,7 @@ if (isset($login_error))
 {
     echo $login_error;
 }?>
-                                        <input type="submit" class="btnRegister"  value="Log In"/>
+                                        <input type="submit" name="btn_login" class="btnRegister"  value="Log In"/>
                                     </div>
 
                                 </div>

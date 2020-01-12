@@ -3,7 +3,7 @@
 define('DB_CON', 'localhost');
 define('USERNAME', 'root');
 define('PASSWORD', '');
-define('DB_NAME', 'task_manager');
+define('DB_NAME', 'wasilah-e-jannat');
 
 $con = mysqli_connect(DB_CON, USERNAME, PASSWORD, DB_NAME);
 
