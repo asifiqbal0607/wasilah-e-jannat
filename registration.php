@@ -2,6 +2,7 @@
 <?php include_once '../wasilah-e-jannat/shared/header.php';?>
 <?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
 <?php
+
 if (isset($_POST['btn_reg']))
 {
     $error_message = "";
@@ -92,7 +93,6 @@ if (isset($_POST['btn_reg']))
             $error_message = "Unable to Add Users!";
         }
     }
-
 }
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
