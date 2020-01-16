@@ -16,7 +16,7 @@ $last_result = $header_last_name[0];
 
 <head>
 
-<title> Task Manager - Welcome User </title>
+<title> Wasilah-e-jannat - Welcome User </title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
     </script>

@@ -1,9 +1,9 @@
 
 
-<?php include_once '../task_manager/shared/header.php';?>
-<?php include_once '../task_manager/shared/footer.php';?>
-<?php include_once '../task_manager/helper/path_helper.php';?>
-<?php include_once '../task_manager/helper/db_helper.php';?>
+<?php include_once '../wasilah-e-jannat/shared/header.php';?>
+<?php include_once '../wasilah-e-jannat/shared/footer.php';?>
+<?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
+<?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
 
 
 <!DOCTYPE html>

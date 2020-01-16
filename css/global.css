@@ -1,6 +1,9 @@
 .bs-example {
     margin: 20px;
 }
+.hide_id{
+    display: none;
+}
 
 [data-letters]:before {
     content:attr(data-letters);
