@@ -72,6 +72,7 @@ $last_result = $header_last_name[0];
             <!-- <h6 class="collapse-header">User Management</h6> -->
             <a class="collapse-item active" href="registration.php">Create User</a>
             <a class="collapse-item active" href="users.php">Users</a>
+            <a class="collapse-item active" href="approval.php">Users Approval</a>
           </div>
         </div>
       </li>

@@ -1,20 +1,4 @@
 <?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
-<?php
-if (isset($_GET['action']) && $_GET['action'] == "del")
-{
-    $user_id = $_GET['id'];
-    $del_query = "DELETE FROM fund_raiser where id=$user_id";
-    $del_result = mysqli_query($con, $del_query);
-    if ($del_result == 1)
-    {
-        header('location:users.php');
-    }
-    else
-    {
-        echo "Unable to Delete Record!";
-    }
-}
-?>
 <?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
 <?php include_once '../wasilah-e-jannat/shared/header.php';?>
 
@@ -59,13 +43,12 @@ else
             <td><?=$user_row['country']?></td>
             <td><?=$user_row['roles']?></td>
             <td>
-            <a href='edit.php<?php echo '?edit_query=' . $user_row['id'] ?>' class="edit-btn" name="edit_btn">
-                <i class="fa fa-edit"></i>
-            </a>
-            </td>
-            <td>
-                 <a class="fa fa-trash" href="<?php echo $_SERVER['PHP_SELF'] . '?action=del&id=' . $user_row['id'] ?>"></a>
-            </td>
+         <select class="dropdown-item" name="user_approval">
+            <option value="">User Status</option>
+            <option value="0">Diss Approval</option>
+            <option value="1">Approval</option>
+        </select></td>
+        <td><input type ="submit" value="Process"></td>
 
         </tr>
 
@@ -75,5 +58,32 @@ else
 }
 ?>
         </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php include_once '../wasilah-e-jannat/shared/footer.php';?>
