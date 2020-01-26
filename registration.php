@@ -86,12 +86,28 @@ if (isset($_POST['btn_reg']))
 
         if ($result == 1)
         {
-            $success_message = "User Sucessfully Registered";
+            //$success_message = "User Sucessfully Registered";
+            $sender = 'asif.iqbal060732@gmail.com';
+            $recipient = 'asif.iqbal0607@gmail.com';
+
+            $subject = "php mail test";
+            $message = "php test message";
+            $headers = 'From:' . $sender;
+
+            if (mail($recipient, $subject, $message, $headers))
+            {
+                $success_message = "User Sucessfully Registered & Email Sent";
+            }
+            else
+            {
+                $error_message = "Unable to send Email!";
+            }
         }
         else
         {
             $error_message = "Unable to Add Users!";
         }
+
     }
 }
 ?>
