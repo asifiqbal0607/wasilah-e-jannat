@@ -1,6 +1,8 @@
 <?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
 <?php include_once '../wasilah-e-jannat/shared/header.php';?>
 <?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
+<?php require_once "../wasilah-e-jannat/vendor/phpmailer/phpmailer/src/PHPMailer.php"; ?>
+<?php require_once "../wasilah-e-jannat/vendor/phpmailer/phpmailer/src/SMTP.php"; ?>
 <?php
 
 if (isset($_POST['btn_reg']))
@@ -86,21 +88,58 @@ if (isset($_POST['btn_reg']))
 
         if ($result == 1)
         {
-            //$success_message = "User Sucessfully Registered";
-            $sender = 'asif.iqbal060732@gmail.com';
-            $recipient = 'asif.iqbal0607@gmail.com';
+            // //$success_message = "User Sucessfully Registered";
+            // $sender = 'asif.iqbal060732@gmail.com';
+            // $recipient = 'asif.iqbal0607@gmail.com';
 
-            $subject = "php mail test";
-            $message = "php test message";
-            $headers = 'From:' . $sender;
+            // $subject = "php mail test";
+            // $message = "php test message";
+            // $headers = 'From:' . $sender;
 
-            if (mail($recipient, $subject, $message, $headers))
+            // if (mail($recipient, $subject, $message, $headers))
+            // {
+            //     $success_message = "User Sucessfully Registered & Email Sent";
+            // }
+            // else
+            // {
+            //     $error_message = "Unable to send Email!";
+            // }
+            $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+            //Enable SMTP debugging.
+            $mail->SMTPDebug = 0;
+            //Set PHPMailer to use SMTP.
+            $mail->isSMTP();
+            //Set SMTP host name
+            $mail->Host = "smtp.gmail.com";
+            //Set this to true if SMTP host requires authentication to send email
+            $mail->SMTPAuth = true;
+            //Provide username and password
+            $mail->Username = "asif.iqbal0607@gmail.com";
+            $mail->Password = "Ziyadasif123";
+            //If SMTP requires TLS encryption then set it
+            $mail->SMTPSecure = "tls";
+            //Set TCP port to connect to
+            $mail->Port = 587;
+
+            $mail->From = "$email";
+            $mail->FromName = "$first_name,$last_name,$email";
+
+            $mail->addAddress("asif.iqbal0607@gmail.com", "test email");
+
+            $mail->isHTML(true);
+
+            $mail->Subject = "User Added and Pending For Aproval";
+            $mail->Body = "<i>Mail body in HTML</i>";
+            $mail->AltBody = "This is the plain text version of the email content";
+
+            if(!$mail->send())
             {
-                $success_message = "User Sucessfully Registered & Email Sent";
+                echo "Mailer Error: " . $mail->ErrorInfo;
             }
             else
             {
-                $error_message = "Unable to send Email!";
+                $success_message = "User Sucessfully Registered & Email Sent For Aproval";
             }
         }
         else
