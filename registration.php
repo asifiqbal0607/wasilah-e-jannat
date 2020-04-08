@@ -1,8 +1,8 @@
 <?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
 <?php include_once '../wasilah-e-jannat/shared/header.php';?>
 <?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
-<?php require_once "../wasilah-e-jannat/vendor/phpmailer/phpmailer/src/PHPMailer.php"; ?>
-<?php require_once "../wasilah-e-jannat/vendor/phpmailer/phpmailer/src/SMTP.php"; ?>
+<?php require_once "../wasilah-e-jannat/vendor/phpmailer/phpmailer/src/PHPMailer.php";?>
+<?php require_once "../wasilah-e-jannat/vendor/phpmailer/phpmailer/src/SMTP.php";?>
 <?php
 
 if (isset($_POST['btn_reg']))
@@ -88,22 +88,7 @@ if (isset($_POST['btn_reg']))
 
         if ($result == 1)
         {
-            // //$success_message = "User Sucessfully Registered";
-            // $sender = 'asif.iqbal060732@gmail.com';
-            // $recipient = 'asif.iqbal0607@gmail.com';
 
-            // $subject = "php mail test";
-            // $message = "php test message";
-            // $headers = 'From:' . $sender;
-
-            // if (mail($recipient, $subject, $message, $headers))
-            // {
-            //     $success_message = "User Sucessfully Registered & Email Sent";
-            // }
-            // else
-            // {
-            //     $error_message = "Unable to send Email!";
-            // }
             $mail = new PHPMailer\PHPMailer\PHPMailer();
 
             //Enable SMTP debugging.
@@ -133,7 +118,7 @@ if (isset($_POST['btn_reg']))
             $mail->Body = "<i>Mail body in HTML</i>";
             $mail->AltBody = "This is the plain text version of the email content";
 
-            if(!$mail->send())
+            if (!$mail->send())
             {
                 echo "Mailer Error: " . $mail->ErrorInfo;
             }

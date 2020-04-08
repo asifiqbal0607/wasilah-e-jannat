@@ -1,7 +1,7 @@
 
 
 <?php include_once '../wasilah-e-jannat/shared/header.php';?>
-<?php include_once '../wasilah-e-jannat/shared/footer.php';?>
+
 <?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
 <?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
 
@@ -25,8 +25,5 @@
 </head>
 
 
-<?php
 
-?>
-
-
+<?php include_once '../wasilah-e-jannat/shared/footer.php';?>

@@ -1,3 +1,4 @@
+
 .bs-example {
     margin: 20px;
 }
@@ -2442,8 +2443,8 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
     color: #fff;
-    background-color: #858796;
-    border-color: #858796
+    background-color: #7483f1;
+    border-color: #7483f1
 }
 
 .btn-secondary:hover {

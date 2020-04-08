@@ -20,8 +20,9 @@ if (isset($_GET['action']) && $_GET['action'] == "del")
 
 <?php
 
-$user_query = "SELECT fund_raiser.id,fund_raiser.first_name,fund_raiser.last_name,fund_raiser.email,fund_raiser.password,fund_raiser.phone,fund_raiser.country,
-admin.roles FROM fund_raiser INNER JOIN admin ON fund_raiser.role_id=admin.id";
+$user_query = "SELECT fund_raiser.id,fund_raiser.first_name,fund_raiser.last_name,fund_raiser.email,fund_raiser.password,fund_raiser.phone,
+fund_raiser.country,fund_raiser.user_approval,
+admin.roles FROM fund_raiser INNER JOIN admin ON fund_raiser.role_id=admin.id WHERE fund_raiser.user_approval = 1";
 $result = mysqli_query($con, $user_query);
 
 ?>
@@ -35,6 +36,7 @@ $result = mysqli_query($con, $user_query);
                 <th>Phone Number</th>
                 <th>Country</th>
                 <th>Roles</th>
+                <th>Actions</th>
             </tr>
 
             <?php if (!$result)
@@ -58,15 +60,12 @@ else
             <td><?=$user_row['phone']?></td>
             <td><?=$user_row['country']?></td>
             <td><?=$user_row['roles']?></td>
-            <td>
+            <th>
             <a href='edit.php<?php echo '?edit_query=' . $user_row['id'] ?>' class="edit-btn" name="edit_btn">
                 <i class="fa fa-edit"></i>
+                <a class="fa fa-trash" href="<?php echo $_SERVER['PHP_SELF'] . '?action=del&id=' . $user_row['id'] ?>"></a>
             </a>
-            </td>
-            <td>
-                 <a class="fa fa-trash" href="<?php echo $_SERVER['PHP_SELF'] . '?action=del&id=' . $user_row['id'] ?>"></a>
-            </td>
-
+            </th>
         </tr>
 
 
@@ -77,3 +76,25 @@ else
         </table>
 
 <?php include_once '../wasilah-e-jannat/shared/footer.php';?>
+
+<?php
+if (isset($_GET['userid']))
+{
+    $user_id = $_GET['userid'];
+    $user_status = $_GET['status'];
+
+    $approval_query = "UPDATE fund_raiser SET user_approval = $user_status WHERE id = $user_id";
+    $update_result = mysqli_query($con, $approval_query);
+
+    if ($update_result == 1)
+    {
+        $success_message = "User Sucessfully Approved";
+    }
+    else
+    {
+        $error_message = "Unable to Approve User!";
+    }
+
+}
+
+?>

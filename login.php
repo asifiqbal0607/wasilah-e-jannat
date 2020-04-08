@@ -26,11 +26,19 @@ if (isset($_POST['btn_login']))
         if ($result == 1)
         {
             $user_result = mysqli_fetch_assoc($result_login);
-            $f_name = $user_result['first_name'];
-            $l_name = $user_result['last_name'];
-            $_SESSION['first_name'] = $f_name;
-            $_SESSION['last_name'] = $l_name;
-            header('location:home.php');
+            if ($user_result['user_approval'] == 1)
+            {
+                $f_name = $user_result['first_name'];
+                $l_name = $user_result['last_name'];
+                $_SESSION['first_name'] = $f_name;
+                $_SESSION['last_name'] = $l_name;
+                header('location:home.php');
+
+            }
+            else
+            {
+                $login_error = "Your approval is pending.!";
+            }
         }
         else
         {
