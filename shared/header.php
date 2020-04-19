@@ -1,8 +1,11 @@
 
 <?php
 session_start();
+if ($_SESSION['first_name'] == null)
+{
+    header('location:logout.php');
+}
 $header_first_name = $_SESSION['first_name'];
-
 $header_last_name = $_SESSION['last_name'];
 
 //echo $first_name . ' ' . $last_name;
@@ -80,16 +83,17 @@ $last_result = $header_last_name[0];
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
+          <i input-group-text">$</i>
+          <span>Fund Managent</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <h6 class="collapse-header">Funding:</h6>
+            <a class="collapse-item active" href="user_registration.php">User Registration</a>
+            <a class="collapse-item active" href="donor_result.php">Donor Result</a>
+            <!-- <a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a> -->
           </div>
         </div>
       </li>
@@ -122,16 +126,6 @@ $last_result = $header_last_name[0];
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">

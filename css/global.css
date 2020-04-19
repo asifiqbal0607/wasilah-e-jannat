@@ -15,7 +15,7 @@
     line-height:2.5em;
     text-align:center;
     border-radius:50%;
-    background:plum;
+    background:#4e73e0;
     vertical-align:middle;
     margin-right:1em;
     color:white;
@@ -10382,7 +10382,7 @@ a:focus {
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link {
-    color: #d1d3e2
+    color: #5f627f
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {

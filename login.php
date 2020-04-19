@@ -32,6 +32,7 @@ if (isset($_POST['btn_login']))
                 $l_name = $user_result['last_name'];
                 $_SESSION['first_name'] = $f_name;
                 $_SESSION['last_name'] = $l_name;
+                $_SESSION['id'] = $user_result['id'];
                 header('location:home.php');
 
             }

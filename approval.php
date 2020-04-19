@@ -10,9 +10,11 @@ $result = mysqli_query($con, $user_query);
 ?>
 
 <div class="table-responsive">
-        <table class="table">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                <thead>
             <tr>
-                <th>User ID</th>
+
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -21,6 +23,8 @@ $result = mysqli_query($con, $user_query);
                 <th>Roles</th>
                 <th>Actions</th>
             </tr>
+                </thead>
+                <tbody>
 
             <?php if (!$result)
 {
@@ -34,8 +38,9 @@ else
     while ($user_row = mysqli_fetch_assoc($result))
     {
         ?>
+
         <tr>
-            <td class=""><?=$user_row['id']?></td>
+
             <td><?=$user_row['first_name']?> </td>
             <td><?=$user_row['last_name']?></td>
             <td><?=$user_row['email']?></td>
@@ -63,10 +68,10 @@ endif;
 }
 }
 ?>
-
+                </tbody>
         </table>
 </div>
-
+<?php include_once '../wasilah-e-jannat/shared/footer.php';?>
 
 <?php
 if (isset($_GET['userid']))
