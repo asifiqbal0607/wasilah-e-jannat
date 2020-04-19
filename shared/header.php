@@ -47,7 +47,7 @@ $last_result = $header_last_name[0];
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Admin User</div>
+        <div class="sidebar-brand-text"> Wasilah-e-Jannat</div>
       </a>
 
       <!-- Divider -->
@@ -61,7 +61,7 @@ $last_result = $header_last_name[0];
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Main Menu
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -102,11 +102,9 @@ $last_result = $header_last_name[0];
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
+
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
     </ul>
     <!-- End of Sidebar -->

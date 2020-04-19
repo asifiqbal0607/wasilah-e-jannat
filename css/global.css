@@ -5,7 +5,12 @@
 .hide_id{
     display: none;
 }
-
+.dataTables_filter > label{
+    float: right !important;
+}
+.sidebar-brand-icon.rotate-n-15 {
+    padding-right: 10px !important;
+}
 [data-letters]:before {
     content:attr(data-letters);
     display:inline-block;
@@ -10521,7 +10526,7 @@ a:focus {
 .sidebar .sidebar-brand {
     height: 4.375rem;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 800;
     padding: 1.5rem 1rem;
     text-align: center;

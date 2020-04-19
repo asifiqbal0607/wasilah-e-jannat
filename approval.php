@@ -51,11 +51,11 @@ else
             <?php
 if ($user_row['user_approval'] == 0): ?>
 
-            <a  type="button" class="btn btn-secondary" name="Process" href="approval.php?userid=<?=$user_row['id']?>&status=1">Approve</a>
+            <a  type="button" class="btn btn-link" name="Process" href="approval.php?userid=<?=$user_row['id']?>&status=1">Approve</a>
             <?php
 else:
         ?>
-        <a  type="button" class="btn btn-secondary" name="Process" href="approval.php?userid=<?=$user_row['id']?>&status=0">Diss Approve</a>
+        <a  type="button" class="btn btn-link" name="Process" href="approval.php?userid=<?=$user_row['id']?>&status=0">Diss Approve</a>
 
 
             <?php
@@ -85,6 +85,7 @@ if (isset($_GET['userid']))
     if ($update_result == 1)
     {
         $success_message = "User Sucessfully Approved";
+        echo "<script>window.location.href='approval.php'</script>";
     }
     else
     {
