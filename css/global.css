@@ -1,4 +1,8 @@
 
+.sidebar-brand-icon img {
+    width: 190px;
+
+}
 .bs-example {
     margin: 20px;
 }
@@ -10524,7 +10528,6 @@ a:focus {
 }
 
 .sidebar .sidebar-brand {
-    height: 4.375rem;
     text-decoration: none;
     font-size: 0.8rem;
     font-weight: 800;

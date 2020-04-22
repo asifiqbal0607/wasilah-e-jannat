@@ -44,10 +44,11 @@ $last_result = $header_last_name[0];
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+          <!-- <i class="fas fa-laugh-wink"></i> -->
+          <img src="img/logo-icon.png">
         </div>
-        <div class="sidebar-brand-text"> Wasilah-e-Jannat</div>
+        <!-- <div class="sidebar-brand-text"> Wasilah-e-Jannat</div> -->
       </a>
 
       <!-- Divider -->

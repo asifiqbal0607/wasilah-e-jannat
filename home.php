@@ -7,8 +7,6 @@ $added_by = $_SESSION['id'];
 $conf_query = "SELECT * FROM fund_raiser INNER JOIN funding ON fund_raiser.id=funding.added_by";
 $result = mysqli_query($con, $conf_query);
 
-// Query for total Amount of all fundraisers!
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +20,16 @@ $result = mysqli_query($con, $conf_query);
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php
+$amount_query = "SELECT SUM(amount) as total_amount FROM funding where fund_confirmation=1";
+$result_total = mysqli_query($con, $amount_query);
+$result_t = mysqli_fetch_assoc($result_total);
+$sum = $result_t['total_amount'];
+echo "PKR" . '&nbsp' . $sum;
+?>
+
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -54,8 +61,28 @@ $result = mysqli_query($con, $conf_query);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                      <a href="pending_funds.php">Pending Requests</a>
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php
+if ($_SESSION['role_id'] == 1)
+{
+    $pending_query = "SELECT * FROM funding WHERE fund_confirmation = 0";
+
+}
+else
+{
+    $pending_query = "SELECT * FROM funding WHERE fund_confirmation = 0 AND added_by= " . $_SESSION['id'];
+}
+
+// $pending_query = "SELECT * FROM funding WHERE fund_confirmation = 0 AND added_by= " . $_SESSION['id'];
+$result_pending = mysqli_query($con, $pending_query);
+$result_pen = mysqli_num_rows($result_pending);
+echo $result_pen;
+
+?>
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -79,6 +106,7 @@ if ($_SESSION['role_id'] == 1)
                 <th>Donor Name</th>
                 <th>Purpose</th>
                 <th>Amount Confirm</th>
+                <th>Currency</th>
                 <th>Total Funding</th>
             </tr>
                 </thead>
@@ -103,7 +131,7 @@ if ($_SESSION['role_id'] == 1)
                 <?php
 if ($user_row['fund_confirmation'] == 0): ?>
 
-            <a  type="button" class="btn btn-link" name="Process" href="home.php?fund_id=<?=$user_row['fund_id']?>&status=1">Amount Confirm</a>
+            <a  type="button" class="btn btn-link" name="Process" href="amount_confirm.php?fund_id=<?=$user_row['fund_id']?>&status=1">Amount Confirm</a>
             <?php
 else:
             ?>
@@ -113,6 +141,7 @@ else:
 endif;
             ?>
 </td>
+                <td><?=$user_row['currency']?></td>
                 <td><?=$user_row['amount']?></td>
 
                 </tr>

@@ -29,6 +29,10 @@ $result = mysqli_query($con, $user_query);
 ?>
 
 <div class="table-responsive">
+<?php
+if ($_SESSION['role_id'] == 1)
+{
+    ?>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                 <thead>
@@ -46,18 +50,18 @@ $result = mysqli_query($con, $user_query);
                 <tbody>
 
             <?php if (!$result)
-{
-    ?>
+    {
+        ?>
                 <tr>
                     <td>No record found.</td>
                 </tr>
                 <?php }
-else
-{
-    while ($user_row = mysqli_fetch_assoc($result))
+    else
     {
+        while ($user_row = mysqli_fetch_assoc($result))
+        {
 
-        ?>
+            ?>
         <tr>
 
             <td><?=$user_row['first_name']?> </td>
@@ -77,12 +81,15 @@ else
 
 <?php
 }
-}
-?>
+    }
+    ?>
 
 </tbody>
 
         </table>
+        <?php
+}
+?>
 </div>
 
 <?php include_once '../wasilah-e-jannat/shared/footer.php';?>
