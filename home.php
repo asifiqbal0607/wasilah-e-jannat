@@ -4,12 +4,44 @@
 
 <?php
 $added_by = $_SESSION['id'];
-$conf_query = "SELECT * FROM fund_raiser INNER JOIN funding ON fund_raiser.id=funding.added_by";
+//$conf_query = "SELECT * FROM fund_raiser INNER JOIN funding ON fund_raiser.id=funding.added_by";
+$conf_query = "SELECT distinct added_by FROM funding where fund_confirmation = 1";
 $result = mysqli_query($con, $conf_query);
+$user_data = array();
+while ($user_row = mysqli_fetch_assoc($result))
+{
+    $user_row_dd = $user_row["added_by"];
+
+    $user_fund_query = mysqli_query($con, "SELECT * FROM fund_raiser INNER JOIN funding ON fund_raiser.id=funding.added_by
+    WHERE added_by = $user_row_dd AND fund_confirmation = 1");
+    $user_total_data = array('user_amount' => 0);
+    $amount = 0;
+    while ($user_row_data = mysqli_fetch_assoc($user_fund_query))
+    {
+        if (!array_key_exists('fund_raiser', $user_total_data))
+        {
+            $user_total_data['fund_raiser'] = $user_row_data['first_name'];
+            $user_total_data['added_by'] = $user_row_data['added_by'];
+            $user_total_data['fund_donor'] = $user_row_data['donor'];
+            $user_total_data['fund_purpose'] = $user_row_data['purpose'];
+            $user_total_data['fund_currency'] = $user_row_data['currency'];
+
+        }
+        if ($user_row_data['currency'] == "PKR")
+        {
+            $user_total_data['user_amount'] += ($user_total_data['user_amount']);
+        }
+        else
+        {
+            $user_total_data['user_amount'] += ($user_row_data['amount'] * $user_row_data['rates']);
+        }
+
+    }
+    array_push($user_data, $user_total_data);
+
+}
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <div class="row">
 
@@ -92,105 +124,44 @@ echo $result_pen;
               </div>
             </div>
                 </div>
-</html>
-<div class="table-responsive">
-<?php
-if ($_SESSION['role_id'] == 1)
-{
-    ?>
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                <thead>
-            <tr>
-                <th>Fund Raiser</th>
-                <th>Donor Name</th>
-                <th>Purpose</th>
-                <th>Amount Confirm</th>
-                <th>Currency</th>
-                <th>Total Funding</th>
-            </tr>
-                </thead>
-                <tbody>
-            <?php if (!$result)
-    {
-        ?>
-                <tr>
-                    <td>No record found.</td>
-                </tr>
-                <?php }
-    else
-    {
-        while ($user_row = mysqli_fetch_assoc($result))
-        {
-            ?>
-                <tr>
-                <td><?=$user_row['first_name']?> </td>
-                <td><?=$user_row['donor']?> </td>
-                <td><?=$user_row['purpose']?></td>
-                <td>
-                <?php
-if ($user_row['fund_confirmation'] == 0): ?>
-
-            <a  type="button" class="btn btn-link" name="Process" href="amount_confirm.php?fund_id=<?=$user_row['fund_id']?>&status=1">Amount Confirm</a>
-            <?php
-else:
-            ?>
 
 
-            <?php
-endif;
-            ?>
-</td>
-                <td><?=$user_row['currency']?></td>
-                <td><?=$user_row['amount']?></td>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                </tr>
-<?php
-}
-    }
-    ?>
-</tbody>
-<?php
-$m_query = "SELECT SUM(amount) as total_amount FROM funding where fund_confirmation=1";
-    $user_row = mysqli_query($con, $m_query);
-    $result = mysqli_fetch_array($user_row);
-    $sum = $result['total_amount'];
-    ?>
+<thead>
 <tr>
-<td style="font-weight:bold">Total Amount</td>
-<td style="text-align: center">-------</td>
-<td style="text-align: center">-------</td>
-<td style="text-align: center">-------</td>
-<td><?php echo $sum; ?></td>
+
+<th>Fund Raiser</th>
+<th>Purpose</th>
+<th>Currency</th>
+<th>Total Funding</th>
+<th>Funding Detail</th>
 </tr>
-    </table>
-    <?php
-}
-?>
-</div>
-
-
-
+</thead>
+<tbody>
 <?php
-if (isset($_GET['fund_id']))
+foreach ($user_data as $row)
 {
-    $user_id = $_GET['fund_id'];
-    $user_status = $_GET['status'];
+    ?>
+          <tr>
 
-    $fund_approval_query = "UPDATE funding SET fund_confirmation = $user_status WHERE fund_id = $user_id";
-    $update_result = mysqli_query($con, $fund_approval_query);
+                <td><?=$row['fund_raiser']?> </td>
+                <td><?=$row['fund_purpose']?></td>
+                <td><?=$row['fund_currency']?></td>
+                <td><?=$row['user_amount']?></td>
+                <td>
 
-    if ($update_result == 1)
-    {
-        $success_message = "User Sucessfully Amount Confirmed";
-        echo "<script>window.location.href='home.php'</script>";
-    }
-    else
-    {
-        $error_message = "Unable to Approve User Amount!";
-    }
+                <a type="button" class="btn btn-link" name="fund_detail" href="fund_detail.php?id=<?=$row['added_by']?>">Fund Detail</a></td>
+          </tr>
 
+
+  <?php
 }
 
 ?>
-<?php include_once '../wasilah-e-jannat/shared/footer.php';?>
+
+</tbody>
+
+                </table>
+
+                <?php include_once '../wasilah-e-jannat/shared/footer.php';?>

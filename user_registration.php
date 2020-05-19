@@ -1,5 +1,3 @@
-
-
 <?php include_once '../wasilah-e-jannat/helper/db_helper.php';?>
 <?php include_once '../wasilah-e-jannat/helper/path_helper.php';?>
 <?php include_once '../wasilah-e-jannat/shared/header.php';?>
@@ -39,7 +37,8 @@ if (isset($_POST['btn_regis']))
     }
     date_default_timezone_set('Asia/Karachi');
     $date = date("Y-m-d H:i:s");
-    $don_query = "insert into funding(`added_by`,`donor`,`amount`,`currency`,`purpose`,`date`)VALUES('$added_by','$donor','$amount','$currency','$purpose','$date')";
+    $don_query = "insert into funding(`added_by`,`donor`,`amount`,`currency`,`purpose`,`date`)VALUES
+    ('$added_by','$donor','$amount','$currency','$purpose','$date')";
     $don_result = mysqli_query($con, $don_query);
 
     if ($don_result == 1)
